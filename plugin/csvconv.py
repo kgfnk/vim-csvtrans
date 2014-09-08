@@ -1,8 +1,9 @@
+# coding: utf-8
 import csv
 import vim
 import re
 
-def getDelimiter(data):
+def get_delimiter(data):
   if "\t" in data:
     return "\t"
   else:
@@ -21,21 +22,21 @@ def sql_encode_value(value):
     return "'" + value + "'"
 
 def transpose(range):
-  delimiter = getDelimiter(range[0])
+  delimiter = get_delimiter(range[0])
   return [delimiter.join(row) for row in zip(*csv.reader(range, delimiter=delimiter))]
 
-#TODO:判断関数修正が必要
 def isnumber(value):
-  if re.match("^-?\d+(.\d+)?$", value):
+  if re.match("-?[0-9]+(.[0-9]+)?", value):
+    #頭0で始まる数字を文字として判定(001等)
+    if re.match("[0]+[0-9]+", value):
+      return False
+    return True
+  else:
     return False
-  #頭0で始まる数字を文字として判定(001等)
-  if re.match("^[0]+\d+$", value):
-    return False
-  return True
 
 def sql_select(range):
   table = vim.eval("a:table")
-  delimiter = getDelimiter(range[0])
+  delimiter = get_delimiter(range[0])
   reader = csv.reader(range, delimiter=delimiter)
   result = []
   header = ""
@@ -45,13 +46,14 @@ def sql_select(range):
     if i == 0:
       header = row
       key = row[0]
+      continue
     result.append(sql.format(", ".join(header), table, key, sql_encode_value(row[0])))
     continue
   return result
 
 def sql_insert(range):
   table = vim.eval("a:table")
-  delimiter = getDelimiter(range[0])
+  delimiter = get_delimiter(range[0])
   reader = csv.reader(range, delimiter=delimiter)
   result = []
   header = ""
@@ -65,7 +67,7 @@ def sql_insert(range):
 
 def sql_update(range):
   table = vim.eval("a:table")
-  delimiter = getDelimiter(range[0])
+  delimiter = get_delimiter(range[0])
   reader = csv.reader(range, delimiter=delimiter)
   result = []
   header = ""
@@ -80,7 +82,9 @@ def sql_update(range):
   return result
 
 def make_sql_set(columns, values):
-  result = []
+  list = []
   for i, column in enumerate(columns):
-    result.append(column + " = " + sql_encode_value(values[i]))
-  return ", ".join(result)
+    if i == 0:
+      continue
+    list.append(column + " = " + sql_encode_value(values[i]))
+  return ", ".join(list)
