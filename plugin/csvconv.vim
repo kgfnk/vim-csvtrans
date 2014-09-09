@@ -26,8 +26,8 @@ endfunction
 
 vnoremap <Leader>tr :call csvconv#Transpose()<CR>
 
-vnoremap <Leader>tss :call csvconv#SqlSelect(input("table:"))<CR>
+vnoremap <Leader>tss :call csvconv#SqlSelect(input("select table?:"))<CR>
 
-vnoremap <Leader>tsi :call csvconv#SqlInsert(input("table:"))<CR>
+vnoremap <Leader>tsi :call csvconv#SqlInsert(input("insert table?:"))<CR>
 
-vnoremap <Leader>tsu :call csvconv#SqlUpdate(input("table:"))<CR>
+vnoremap <Leader>tsu :call csvconv#SqlUpdate(input("update table?:"))<CR>
