@@ -1,4 +1,4 @@
-#csvtrans
+#vim-csvtrans
 =======
 
 CSVファイルを加工するvimプラグイン
@@ -13,7 +13,7 @@ CSVファイルを加工するvimプラグイン
 NeoBundle "kgfnk/vim-csvtrans"
 ```
 
-* [Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim)
+要インストール： [Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
 ##コマンド
 
