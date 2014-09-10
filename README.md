@@ -69,7 +69,7 @@ select col1, col2, col3, col4 from hoge where col1 = 2
 select col1, col2, col3, col4 from hoge where col1 = 3
 ```
 
-'<Leader>tht
+`<Leader>tht`
 
 ```
 col1,col2,col3
@@ -100,7 +100,7 @@ data2-1,data2-2,data2-3
 ```
 
 
-'<Leader>thd
+`<Leader>thd`
 
 ```
 col1,col2,col3
@@ -128,7 +128,7 @@ data2-1,data2-2,data2-3
 </div>
 ```
 
-'<Leader>thl
+`<Leader>thl`
 
 ```
 リスト1
@@ -148,7 +148,7 @@ data2-1,data2-2,data2-3
 </ul>
 ```
 
-'<Leader>ths
+`<Leader>ths`
 
 ```
 1,選択1
@@ -168,7 +168,7 @@ data2-1,data2-2,data2-3
 </select>
 ```
 
-'<Leader>thi
+`<Leader>thi`
 
 ```
 name1,値1
