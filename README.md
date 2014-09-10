@@ -68,3 +68,120 @@ select col1, col2, col3, col4 from hoge where col1 = 1
 select col1, col2, col3, col4 from hoge where col1 = 2
 select col1, col2, col3, col4 from hoge where col1 = 3
 ```
+
+'<Leader>tht
+
+```
+col1,col2,col3
+data1-1,data1-2,data1-3
+data2-1,data2-2,data2-3
+```
+
+↓
+
+```
+<table>
+  <tr>
+    <td>col1</td>
+    <td>col2</td>
+    <td>col3</td>
+  </tr>
+  <tr>
+    <td>data1-1</td>
+    <td>data1-2</td>
+    <td>data1-3</td>
+  </tr>
+  <tr>
+    <td>data2-1</td>
+    <td>data2-2</td>
+    <td>data2-3</td>
+  </tr>
+</table>
+```
+
+
+'<Leader>thd
+
+```
+col1,col2,col3
+data1-1,data1-2,data1-3
+data2-1,data2-2,data2-3
+```
+
+↓
+
+```
+<div>
+  <div>col1</div>
+  <div>col2</div>
+  <div>col3</div>
+</div>
+<div>
+  <div>data1-1</div>
+  <div>data1-2</div>
+  <div>data1-3</div>
+</div>
+<div>
+  <div>data2-1</div>
+  <div>data2-2</div>
+  <div>data2-3</div>
+</div>
+```
+
+'<Leader>thl
+
+```
+リスト1
+リスト2
+リスト3
+リスト4
+```
+
+↓
+
+```
+<ul>
+  <li>リスト1</li>
+  <li>リスト2</li>
+  <li>リスト3</li>
+  <li>リスト4</li>
+</ul>
+```
+
+'<Leader>ths
+
+```
+1,選択1
+2,選択2
+3,選択3
+4,選択4
+```
+
+↓
+
+```
+<select>
+  <option value="1">選択1</option>
+  <option value="2">選択2</option>
+  <option value="3">選択3</option>
+  <option value="4">選択4</option>
+</select>
+```
+
+'<Leader>thi
+
+```
+name1,値1
+name2,値2
+name3,値3
+name4,値4
+```
+
+↓
+
+```
+<input type="hidden" id="name1" name="name1" value="値1" />
+<input type="hidden" id="name2" name="name2" value="値2" />
+<input type="hidden" id="name3" name="name3" value="値3" />
+<input type="hidden" id="name4" name="name4" value="値4" />
+```
