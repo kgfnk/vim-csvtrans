@@ -2,6 +2,7 @@
 import csv
 import vim
 import re
+from xml.sax.saxutils import *
 
 def get_delimiter(data):
   if "\t" in data:
@@ -17,9 +18,9 @@ def sql_encode_row(row):
 
 def sql_encode_value(value):
   if isnumber(value):
-    return value
+    return value.strip()
   else:
-    return "'" + value + "'"
+    return "'" + value.strip() + "'"
 
 def transpose(range):
   delimiter = get_delimiter(range[0])
@@ -47,7 +48,7 @@ def sql_select(range):
       header = row
       key = row[0]
       continue
-    result.append(sql.format(", ".join(header), table, key, sql_encode_value(row[0])))
+    result.append(sql.format(", ".join(header).strip(), table, key.strip(), sql_encode_value(row[0])))
     continue
   return result
 
@@ -62,7 +63,7 @@ def sql_insert(range):
     if i == 0:
       header = ", ".join(row)
       continue
-    result.append(sql.format(table, header, ", ".join(sql_encode_row(row))))
+    result.append(sql.format(table, header.strip(), ", ".join(sql_encode_row(row))))
   return result
 
 def sql_update(range):
@@ -76,7 +77,7 @@ def sql_update(range):
   for i, row in enumerate(reader):
     if i == 0:
       header = row
-      key = row[0]
+      key = row[0].strip()
       continue
     result.append(sql.format(table, make_sql_set(header, row), key, sql_encode_value(row[0])))
   return result
@@ -86,5 +87,58 @@ def make_sql_set(columns, values):
   for i, column in enumerate(columns):
     if i == 0:
       continue
-    list.append(column + " = " + sql_encode_value(values[i]))
+    list.append(column.strip() + " = " + sql_encode_value(values[i].strip()))
   return ", ".join(list)
+
+def html_table(range):
+  delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  result.append("<table>")
+  for i, row in enumerate(reader):
+    result.append("  <tr>")
+    for column in row:
+      result.append("    <td>" + escape(column.strip()) + "</td>")
+    result.append("  </tr>")
+  result.append("</table>")
+  return result
+
+def html_div(range):
+  delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  for row in reader:
+    result.append("<div>")
+    for column in row:
+      result.append("  <div>" + escape(column.strip()) + "</div>")
+    result.append("</div>")
+  return result
+
+def html_select(range):
+  delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  result.append("<select>")
+  for row in reader:
+    result.append("  <option value=\"" + escape(row[0].strip()) + "\">" + escape(row[1].strip()) + "</option>")
+  result.append("</select>")
+  return result
+
+def html_ul(range):
+  delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  result.append("<ul>")
+  for row in reader:
+    result.append("  <li>" + escape(row[0].strip()) + "</li>")
+  result.append("</ul>")
+  return result
+
+def html_input(range):
+  delimiter = get_delimiter(range[0])
+  type = vim.eval("a:type")
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  for row in reader:
+    result.append("<input type=\"" + type + "\" id=\"" + escape(row[0].strip()) + "\" name=\"" + escape(row[0].strip()) + "\" value=\"" + escape(row[1].strip()) + "\" />")
+  return result

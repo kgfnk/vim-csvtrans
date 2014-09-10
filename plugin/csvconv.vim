@@ -24,10 +24,32 @@ function! csvconv#SqlUpdate(table) range
 	'<,'>python c.range[:] = sql_update(c.range)
 endfunction
 
-vnoremap <Leader>tr :call csvconv#Transpose()<CR>
+function! csvconv#HtmlTable() range
+	'<,'>python c.range[:] = html_table(c.range)
+endfunction
 
-vnoremap <Leader>tss :call csvconv#SqlSelect(input("select table?:"))<CR>
+function! csvconv#HtmlDiv() range
+	'<,'>python c.range[:] = html_div(c.range)
+endfunction
 
-vnoremap <Leader>tsi :call csvconv#SqlInsert(input("insert table?:"))<CR>
+function! csvconv#HtmlSelect() range
+	'<,'>python c.range[:] = html_select(c.range)
+endfunction
 
-vnoremap <Leader>tsu :call csvconv#SqlUpdate(input("update table?:"))<CR>
+function! csvconv#HtmlUl() range
+	'<,'>python c.range[:] = html_ul(c.range)
+endfunction
+
+function! csvconv#HtmlInput(type) range
+	'<,'>python c.range[:] = html_input(c.range)
+endfunction
+
+vnoremap <silent> <Leader>tr :call csvconv#Transpose()<CR>
+vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:"))<CR>
+vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:"))<CR>
+vnoremap <silent> <Leader>tsu :call csvconv#SqlUpdate(input("update table?:"))<CR>
+vnoremap <silent> <Leader>tht :call csvconv#HtmlTable()<CR>
+vnoremap <silent> <Leader>thd :call csvconv#HtmlDiv()<CR>
+vnoremap <silent> <Leader>ths :call csvconv#HtmlSelect()<CR>
+vnoremap <silent> <Leader>thl :call csvconv#HtmlUl()<CR>
+vnoremap <silent> <Leader>thi :call csvconv#HtmlInput(input("imput type?"))<CR>
