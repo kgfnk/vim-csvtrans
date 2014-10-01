@@ -1,3 +1,11 @@
+if exists("g:loaded_typecorr")
+  finish
+endif
+let g:loaded_typecorr = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 if !has("python")
 	finish
 endif
@@ -53,3 +61,8 @@ vnoremap <silent> <Leader>thd :call csvconv#HtmlDiv()<CR>
 vnoremap <silent> <Leader>ths :call csvconv#HtmlSelect()<CR>
 vnoremap <silent> <Leader>thl :call csvconv#HtmlUl()<CR>
 vnoremap <silent> <Leader>thi :call csvconv#HtmlInput(input("imput type?"))<CR>
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: foldmethod=marker
