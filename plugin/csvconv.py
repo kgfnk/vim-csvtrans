@@ -139,6 +139,12 @@ def html_input(range):
   type = vim.eval("a:type")
   reader = csv.reader(range, delimiter=delimiter)
   result = []
+  temp = "<input type=\"${type}\" id=\"${id}\" name=\"${name}\" value=\"${value}\" />"
+  temp = temp.replace("${type}", type)
   for row in reader:
-    result.append("<input type=\"" + type + "\" id=\"" + escape(row[0].strip()) + "\" name=\"" + escape(row[0].strip()) + "\" value=\"" + escape(row[1].strip()) + "\" />")
+    html = temp
+    html = html.replace("${id}", escape(row[0].strip()))
+    html = html.replace("${name}", escape(row[0].strip()))
+    html = html.replace("${value}", escape(row[1].strip()))
+    result.append(html)
   return result

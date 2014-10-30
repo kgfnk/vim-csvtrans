@@ -53,14 +53,14 @@ function! csvconv#HtmlInput(type) range
 endfunction
 
 vnoremap <silent> <Leader>tr :call csvconv#Transpose()<CR>
-vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:"))<CR>
-vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:"))<CR>
-vnoremap <silent> <Leader>tsu :call csvconv#SqlUpdate(input("update table?:"))<CR>
+vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:", "table_name"))<CR>
+vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:", "table_name"))<CR>
+vnoremap <silent> <Leader>tsu :call csvconv#SqlUpdate(input("update table?:", "table_name"))<CR>
 vnoremap <silent> <Leader>tht :call csvconv#HtmlTable()<CR>
 vnoremap <silent> <Leader>thd :call csvconv#HtmlDiv()<CR>
 vnoremap <silent> <Leader>ths :call csvconv#HtmlSelect()<CR>
 vnoremap <silent> <Leader>thl :call csvconv#HtmlUl()<CR>
-vnoremap <silent> <Leader>thi :call csvconv#HtmlInput(input("imput type?"))<CR>
+vnoremap <silent> <Leader>thi :call csvconv#HtmlInput(input("imput type?", "text"))<CR>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
