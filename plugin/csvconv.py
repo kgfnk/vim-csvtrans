@@ -19,6 +19,8 @@ def sql_encode_row(row):
 def sql_encode_value(value):
   if isnumber(value):
     return value.strip()
+  elif value.upper() == "NULL":
+    return value
   else:
     return "'" + value.strip() + "'"
 
