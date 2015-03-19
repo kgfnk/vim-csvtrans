@@ -7,7 +7,11 @@ from xml.sax.saxutils import *
 def get_delimiter(data):
   if "\t" in data:
     return "\t"
+<<<<<<< HEAD
   elif ":" in data:
+=======
+  if ":" in data:
+>>>>>>> 169947b0be46cff992e4afdbb52153e2302887b2
     return ":"
   else:
     return ","
