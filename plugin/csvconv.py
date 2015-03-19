@@ -24,7 +24,7 @@ def sql_encode_value(value):
   elif value.upper() == "NULL":
     return value
   else:
-    return "'" + value.strip().replace("'", "''") + "'"
+    return "'" + value.strip().replace("'", "''").replace("\\", "\\\\") + "'"
 
 def transpose(range):
   delimiter = get_delimiter(range[0])
