@@ -12,17 +12,21 @@ def get_delimiter(data):
   else:
     return ","
 
-def sql_encode_row(row):
+def sql_escape_row(row):
   result = []
   for column in row:
-    result.append (sql_encode_value(column))
+    result.append (sql_escape_value(column))
   return result
 
-def sql_encode_value(value):
+def sql_escape_value(value):
+  r = re.compile("\\\(.*)")
   if isnumber(value):
     return value.strip()
   elif value.upper() == "NULL":
     return value
+  elif r.match(value):
+    # function \GETDATE() → GETDATE()
+    return r.search(value).group(1)
   else:
     return "'" + value.strip().replace("'", "''").replace("\\", "\\\\") + "'"
 
@@ -52,7 +56,7 @@ def sql_select(range):
       header = row
       key = row[0]
       continue
-    result.append(sql.format(", ".join(header).strip(), table, key.strip(), sql_encode_value(row[0])))
+    result.append(sql.format(", ".join(header).strip(), table, key.strip(), sql_escape_value(row[0])))
     continue
   return result
 
@@ -67,7 +71,7 @@ def sql_insert(range):
     if i == 0:
       header = ", ".join(row)
       continue
-    result.append(sql.format(table, header.strip(), ", ".join(sql_encode_row(row))))
+    result.append(sql.format(table, header.strip(), ", ".join(sql_escape_row(row))))
   return result
 
 def sql_update(range):
@@ -83,7 +87,7 @@ def sql_update(range):
       header = row
       key = row[0].strip()
       continue
-    result.append(sql.format(table, make_sql_set(header, row), key, sql_encode_value(row[0])))
+    result.append(sql.format(table, make_sql_set(header, row), key, sql_escape_value(row[0])))
   return result
 
 def make_sql_set(columns, values):
@@ -91,7 +95,7 @@ def make_sql_set(columns, values):
   for i, column in enumerate(columns):
     if i == 0:
       continue
-    list.append(column.strip() + " = " + sql_encode_value(values[i].strip()))
+    list.append(column.strip() + " = " + sql_escape_value(values[i].strip()))
   return ", ".join(list)
 
 def html_table(range):
