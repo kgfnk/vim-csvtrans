@@ -35,7 +35,7 @@ def transpose(range):
   return [delimiter.join(row) for row in zip(*csv.reader(range, delimiter=delimiter))]
 
 def isnumber(value):
-  if re.match("^-?[0-9]+(.[0-9]+)?$", value):
+  if re.match("^-?[0-9]+(\.[0-9]+)?$", value):
     #頭0で始まる数字を文字として判定(001等)
     if re.match("^[0]+[0-9]+$", value):
       return False
