@@ -1,7 +1,11 @@
 # coding: utf-8
+import sys
 import csv
 import vim
 import re
+import codecs
+import unicodedata
+
 from xml.sax.saxutils import *
 
 def get_delimiter(data):

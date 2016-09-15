@@ -53,7 +53,7 @@ function! csvconv#HtmlInput(type) range
 endfunction
 
 function! csvconv#MarkdownTable() range
-	'<,'>python c.range[:] = html_input(c.range)
+	'<,'>python c.range[:] = markdown_table(c.range)
 endfunction
 
 vnoremap <silent> <Leader>tr :call csvconv#Transpose()<CR>
