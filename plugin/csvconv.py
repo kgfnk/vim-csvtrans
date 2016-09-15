@@ -156,3 +156,50 @@ def html_input(range):
     html = html.replace("${value}", escape(row[1].strip()))
     result.append(html)
   return result
+
+def markdown_table(range):
+  delimiter = get_delimiter(range[0])
+
+  lengths = []
+  for row in zip(*csv.reader(range, delimiter=delimiter)):
+     lengths.append(max([string_width(v) for v in row]))
+
+  result = []
+
+  reader = csv.reader(range, delimiter=delimiter)
+  header = next(reader)
+
+  temp = "|"
+  for i, column in enumerate(header):
+    temp = temp + ljust(column, lengths[i]) + "|"
+  result.append(temp)
+
+  temp = "|"
+  for i in lengths:
+    temp = temp + ljust("", i, "-") + "|"
+  result.append(temp)
+
+  for row in reader:
+    temp = "|"
+    for i, column in enumerate(row):
+      temp = temp + ljust(column, lengths[i]) + "|"
+    result.append(temp)
+
+  return result
+
+def string_width(str):
+    width = 0
+    for c in unicode(str, "utf-8"):
+        char_width = unicodedata.east_asian_width(c)
+        if char_width in u"WFA":
+            width += 2
+        else:
+            width += 1
+
+    return width
+
+def ljust(str, size, pad = " "):
+  space = size - string_width(str)
+  if space > 0:
+    str += pad * space
+  return str

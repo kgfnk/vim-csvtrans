@@ -202,3 +202,19 @@ name4,値4
 <input type="hidden" id="name3" name="name3" value="値3" />
 <input type="hidden" id="name4" name="name4" value="値4" />
 ```
+
+`<Leader>tmt` Markdown Tableへ変換
+
+```
+col1,col2,col3
+data1-1,data1-2,data1-3
+data2-1,data2-2,data2-3
+```
+
+↓
+
+```
+col1,col2,col3
+data1-1,data1-2,data1-3
+data2-1,data2-2,data2-3
+```
