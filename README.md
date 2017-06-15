@@ -45,7 +45,7 @@ col1,col2,col3,col4,col5
 ```
 ↓
 
-```
+```sql
 insert into hoge (col1, col2, col3, col4, col5) values (1, 'A', 'E', '01', 1)
 insert into hoge (col1, col2, col3, col4, col5) values (2, 'B', 'F', '02', 2)
 insert into hoge (col1, col2, col3, col4, col5) values (3, 'C', 'G', '03', 3)
@@ -61,7 +61,7 @@ col1,col2,col3,col4,col5
 ```
 ↓
 
-```
+```sql
 update hoge set col2 = 'A', col3 = 'E', col4 = '01', col5 = 1 where col1 = 1
 update hoge set col2 = 'B', col3 = 'F', col4 = '02', col5 = 2 where col1 = 2
 update hoge set col2 = 'C', col3 = 'G', col4 = '03', col5 = 3 where col1 = 3
@@ -77,7 +77,7 @@ col1,col2,col3,col4,col5
 ```
 ↓
 
-```
+```sql
 select col1, col2, col3, col4, col5 from hoge where col1 = 1
 select col1, col2, col3, col4, col5 from hoge where col1 = 2
 select col1, col2, col3, col4, col5 from hoge where col1 = 3
@@ -95,7 +95,7 @@ data2-1,data2-2,data2-3
 
 ↓
 
-```
+```html
 <table>
   <tr>
     <td>col1</td>
@@ -125,7 +125,7 @@ data2-1,data2-2,data2-3
 
 ↓
 
-```
+```html
 <div>
   <div>col1</div>
   <div>col2</div>
@@ -154,7 +154,7 @@ data2-1,data2-2,data2-3
 
 ↓
 
-```
+```html
 <ul>
   <li>リスト1</li>
   <li>リスト2</li>
@@ -174,7 +174,7 @@ data2-1,data2-2,data2-3
 
 ↓
 
-```
+```html
 <select>
   <option value="1">選択1</option>
   <option value="2">選択2</option>
@@ -194,7 +194,7 @@ name4,値4
 
 ↓
 
-```
+```html
 <input type="hidden" id="name1" name="name1" value="値1" />
 <input type="hidden" id="name2" name="name2" value="値2" />
 <input type="hidden" id="name3" name="name3" value="値3" />
