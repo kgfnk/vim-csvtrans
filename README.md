@@ -1,10 +1,10 @@
-#vim-csvtrans
+# vim-csvtrans
 =======
 
 CSVファイルを加工するvimプラグイン
 ヴィジュアルモードで選択したCSVデータを他の形式へ変換を行う。
 
-##インストール
+## インストール
 
 * vimでpythonインターフェースが利用できること。
 
@@ -15,7 +15,7 @@ NeoBundle "kgfnk/vim-csvtrans"
 
 要インストール： [Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
-##コマンド
+## コマンド
 
 `<Leader>tr` 行列入れ替え
 
@@ -34,7 +34,7 @@ E,F,G,H
 4,D,H
 ```
 
-###SQLへ変換
+### SQLへ変換
 
 `<Leader>tsi` SQL INSERT文へ変換
 
@@ -84,7 +84,7 @@ select col1, col2, col3, col4, col5 from hoge where col1 = 2
 select col1, col2, col3, col4, col5 from hoge where col1 = 3
 ```
 
-###HTMLへ変換
+### HTMLへ変換
 
 `<Leader>tht`
 
@@ -115,7 +115,6 @@ data2-1,data2-2,data2-3
   </tr>
 </table>
 ```
-
 
 `<Leader>thd`
 
@@ -203,7 +202,9 @@ name4,値4
 <input type="hidden" id="name4" name="name4" value="値4" />
 ```
 
-`<Leader>tmt` Markdown Tableへ変換
+### Markdown Tableへ変換
+
+`<Leader>tmt`
 
 ```
 col1,col2,col3
