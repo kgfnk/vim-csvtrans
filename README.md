@@ -7,7 +7,8 @@ CSVファイルを加工するvimプラグイン
 
 * vimでpythonインターフェースが利用できること。
 
-```.vimrc
+.vimrc
+```vim
 NeoBundle "kgfnk/vim-csvtrans"
 ```
 
