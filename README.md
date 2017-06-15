@@ -18,7 +18,7 @@ NeoBundle "kgfnk/vim-csvtrans"
 
 `<Leader>tr` 行列入れ替え
 
-```
+```csv
 1,2,3,4
 A,B,C,D
 E,F,G,H
@@ -26,7 +26,7 @@ E,F,G,H
 
 ↓
 
-```
+```csv
 1,A,E
 2,B,F
 3,C,G
@@ -37,7 +37,7 @@ E,F,G,H
 
 `<Leader>tsi` SQL INSERT文へ変換
 
-```
+```csv
 col1,col2,col3,col4,col5
 1,A,E,01,1
 2,B,F,02,2
@@ -53,7 +53,7 @@ insert into hoge (col1, col2, col3, col4, col5) values (3, 'C', 'G', '03', 3)
 
 `<Leader>tsu` SQL UPDATE文へ変換
 
-```
+```csv
 col1,col2,col3,col4,col5
 1,A,E,01,1
 2,B,F,02,2
@@ -69,7 +69,7 @@ update hoge set col2 = 'C', col3 = 'G', col4 = '03', col5 = 3 where col1 = 3
 
 `<Leader>tss` SQL SELECT文へ変換
 
-```
+```csv
 col1,col2,col3,col4,col5
 1,A,E,01,1
 2,B,F,02,2
@@ -87,7 +87,7 @@ select col1, col2, col3, col4, col5 from hoge where col1 = 3
 
 `<Leader>tht`
 
-```
+```csv
 col1,col2,col3
 data1-1,data1-2,data1-3
 data2-1,data2-2,data2-3
@@ -117,7 +117,7 @@ data2-1,data2-2,data2-3
 
 `<Leader>thd`
 
-```
+```csv
 col1,col2,col3
 data1-1,data1-2,data1-3
 data2-1,data2-2,data2-3
@@ -145,7 +145,7 @@ data2-1,data2-2,data2-3
 
 `<Leader>thl`
 
-```
+```csv
 リスト1
 リスト2
 リスト3
@@ -165,7 +165,7 @@ data2-1,data2-2,data2-3
 
 `<Leader>ths`
 
-```
+```csv
 1,選択1
 2,選択2
 3,選択3
@@ -185,7 +185,7 @@ data2-1,data2-2,data2-3
 
 `<Leader>thi`
 
-```
+```csv
 name1,値1
 name2,値2
 name3,値3
@@ -205,7 +205,7 @@ name4,値4
 
 `<Leader>tmt`
 
-```
+```csv
 col1,col2,col3
 data1-1,data1-2,data1-3
 data2-1,data2-2,data2-3***
@@ -214,7 +214,7 @@ data3-1,data3-2*****,data3-3
 
 ↓
 
-```
+```markdown
 |col1   |col2        |col3      |
 |-------|------------|----------|
 |data1-1|data1-2     |data1-3   |
