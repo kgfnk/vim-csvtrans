@@ -56,6 +56,10 @@ function! csvconv#MarkdownTable() range
 	'<,'>python c.range[:] = markdown_table(c.range)
 endfunction
 
+function! csvconv#Json() range
+	'<,'>python c.range[:] = tojson(c.range)
+endfunction
+
 vnoremap <silent> <Leader>tr :call csvconv#Transpose()<CR>
 vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:", "table_name"))<CR>
 vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:", "table_name"))<CR>
@@ -66,6 +70,7 @@ vnoremap <silent> <Leader>ths :call csvconv#HtmlSelect()<CR>
 vnoremap <silent> <Leader>thl :call csvconv#HtmlUl()<CR>
 vnoremap <silent> <Leader>thi :call csvconv#HtmlInput(input("imput type?", "text"))<CR>
 vnoremap <silent> <Leader>tmt :call csvconv#MarkdownTable()<CR>
+vnoremap <silent> <Leader>tj :call csvconv#Json()<CR>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

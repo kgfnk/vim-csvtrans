@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys
-import csv
+import csv, json
 import vim
 import re
 import codecs
@@ -189,6 +189,19 @@ def markdown_table(range):
       temp = temp + ljust(column, lengths[i]) + "|"
     result.append(temp)
 
+  return result
+
+def tojson(range):
+  delimiter = get_delimiter(range[0])
+  result = []
+  result.append("[")
+  for row in csv.DictReader(range, delimiter=delimiter):
+    line = json.dumps(row, ensure_ascii=False)
+    line = "  " + line + ","
+    result.append(line)
+
+  result[len(result) - 1] = result[len(result) - 1].strip(",")
+  result.append("]")
   return result
 
 def string_width(str):

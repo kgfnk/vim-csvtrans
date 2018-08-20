@@ -220,3 +220,20 @@ data3-1,data3-2*****,data3-3
 |data2-1|data2-2     |data2-3***|
 |data3-1|data3-2*****|data3-3   |
 ```
+
+### JSONへ変換
+
+`<Leader>tj`
+
+```csv
+foo,bar,bazz
+1,2,3
+1,2,3
+```
+
+```json
+[
+  {"bazz": "3", "foo": "1", "bar": "2"},
+  {"bazz": "3", "foo": "1", "bar": "2"}
+]
+```
