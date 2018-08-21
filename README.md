@@ -233,7 +233,7 @@ foo,bar,bazz
 
 ```json
 [
-  {"bazz": "3", "foo": "1", "bar": "2"},
-  {"bazz": "3", "foo": "1", "bar": "2"}
+  {"foo": "1", "bar": "2", "bazz": "3"},
+  {"foo": "1", "bar": "2", "bazz": "3"}
 ]
 ```

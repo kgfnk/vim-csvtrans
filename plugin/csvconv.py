@@ -193,16 +193,28 @@ def markdown_table(range):
 
 def tojson(range):
   delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
   result = []
   result.append("[")
-  for row in csv.DictReader(range, delimiter=delimiter):
-    line = json.dumps(row, ensure_ascii=False)
-    line = "  " + line + ","
-    result.append(line)
+  header = ""
+  key = ""
+  for i, row in enumerate(reader):
+    if i == 0:
+      header = row
+      key = row[0].strip()
+      continue
+    result.append("  {" + json(header, row) + "},")
 
   result[len(result) - 1] = result[len(result) - 1].strip(",")
   result.append("]")
+
   return result
+
+def json(columns, values):
+  list = []
+  for i, column in enumerate(columns):
+    list.append("\"" + column.strip() + "\": \"" + values[i].strip() + "\"")
+  return ", ".join(list)
 
 def string_width(str):
     width = 0
