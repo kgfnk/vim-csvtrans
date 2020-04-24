@@ -54,7 +54,7 @@ def sql_select(range):
   result = []
   header = ""
   key = ""
-  sql = "select {0} from {1} where {2} = {3}"
+  sql = "select {0} from {1} where {2} = {3};"
   for i, row in enumerate(reader):
     if i == 0:
       header = row
@@ -70,7 +70,7 @@ def sql_insert(range):
   reader = csv.reader(range, delimiter=delimiter)
   result = []
   header = ""
-  sql = "insert into {0} ({1}) values ({2})"
+  sql = "insert into {0} ({1}) values ({2});"
   for i, row in enumerate(reader):
     if i == 0:
       header = ", ".join(row)
@@ -85,13 +85,29 @@ def sql_update(range):
   result = []
   header = ""
   key = ""
-  sql = "update {0} set {1} where {2} = {3}"
+  sql = "update {0} set {1} where {2} = {3};"
   for i, row in enumerate(reader):
     if i == 0:
       header = row
       key = row[0].strip()
       continue
     result.append(sql.format(table, make_sql_set(header, row), key, sql_escape_value(row[0])))
+  return result
+
+def sql_delete(range):
+  table = vim.eval("a:table")
+  delimiter = get_delimiter(range[0])
+  reader = csv.reader(range, delimiter=delimiter)
+  result = []
+  header = ""
+  key = ""
+  sql = "delete from {0} where {1} = {2};"
+  for i, row in enumerate(reader):
+    if i == 0:
+      header = row
+      key = row[0].strip()
+      continue
+    result.append(sql.format(table, key, sql_escape_value(row[0])))
   return result
 
 def make_sql_set(columns, values):

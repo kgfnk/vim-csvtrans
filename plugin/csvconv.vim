@@ -32,6 +32,10 @@ function! csvconv#SqlUpdate(table) range
 	'<,'>python c.range[:] = sql_update(c.range)
 endfunction
 
+function! csvconv#SqlDelete(table) range
+	'<,'>python c.range[:] = sql_delete(c.range)
+endfunction
+
 function! csvconv#HtmlTable() range
 	'<,'>python c.range[:] = html_table(c.range)
 endfunction
@@ -61,9 +65,10 @@ function! csvconv#Json() range
 endfunction
 
 vnoremap <silent> <Leader>tr :call csvconv#Transpose()<CR>
-vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:", "table_name"))<CR>
-vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:", "table_name"))<CR>
-vnoremap <silent> <Leader>tsu :call csvconv#SqlUpdate(input("update table?:", "table_name"))<CR>
+vnoremap <silent> <Leader>tss :call csvconv#SqlSelect(input("select table?:", expand("%:t:r")))<CR>
+vnoremap <silent> <Leader>tsi :call csvconv#SqlInsert(input("insert table?:", expand("%:t:r")))<CR>
+vnoremap <silent> <Leader>tsu :call csvconv#SqlUpdate(input("update table?:", expand("%:t:r")))<CR>
+vnoremap <silent> <Leader>tsd :call csvconv#SqlDelete(input("delete table?:", expand("%:t:r")))<CR>
 vnoremap <silent> <Leader>tht :call csvconv#HtmlTable()<CR>
 vnoremap <silent> <Leader>thd :call csvconv#HtmlDiv()<CR>
 vnoremap <silent> <Leader>ths :call csvconv#HtmlSelect()<CR>
