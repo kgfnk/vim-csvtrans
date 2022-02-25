@@ -234,7 +234,7 @@ def json(columns, values):
 
 def string_width(str):
     width = 0
-    for c in unicode(str, "utf-8"):
+    for c in str:
         char_width = unicodedata.east_asian_width(c)
         if char_width in u"WFA":
             width += 2
